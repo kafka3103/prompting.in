@@ -1,0 +1,2638 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PROMPTING.IN — Otomatisasi Bisnis Anda dengan AI Agent Cerdas</title>
+  <meta name="description" content="Startup agensi AI terdepan untuk pembuatan AI Agent kustom dan otomatisasi alur kerja enterprise B2B. Layanan 24/7, integrasi seamless, dan efisiensi hingga 60%.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <style>
+/* ==========================================================================
+   PROMPTING.IN — Design System & Stylesheet
+   Modern Sleek Dark Mode • Neon Blue & Purple Gradient • Glassmorphism
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties / Design Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Color Palette - Deep Dark Mode */
+  --bg-primary: #07080e;
+  --bg-secondary: #0c0e18;
+  --bg-card: rgba(16, 20, 34, 0.72);
+  --bg-card-hover: rgba(22, 28, 48, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.03);
+  --bg-input: rgba(12, 16, 28, 0.8);
+
+  /* Neon Gradient Accents */
+  --neon-blue: #00d2ff;
+  --neon-cyan: #00f0ff;
+  --neon-purple: #8b5cf6;
+  --neon-magenta: #d946ef;
+  --neon-indigo: #6366f1;
+
+  --gradient-neon: linear-gradient(135deg, #00f0ff 0%, #8b5cf6 50%, #d946ef 100%);
+  --gradient-blue-purple: linear-gradient(135deg, #00d2ff 0%, #7928ca 100%);
+  --gradient-card-border: linear-gradient(135deg, rgba(0, 240, 255, 0.3) 0%, rgba(139, 92, 246, 0.3) 50%, rgba(217, 70, 239, 0.1) 100%);
+  --gradient-glow: radial-gradient(circle, rgba(139, 92, 246, 0.25) 0%, rgba(0, 210, 255, 0.05) 50%, transparent 70%);
+
+  /* Text & Content Colors */
+  --text-main: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-accent: #38bdf8;
+
+  /* Borders & Glassmorphism */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(255, 255, 255, 0.1);
+  --border-focus: rgba(0, 240, 255, 0.6);
+  --glass-blur: blur(20px);
+  --glass-blur-sm: blur(12px);
+
+  /* Shadow & Glow Tokens */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 40px -10px rgba(0, 0, 0, 0.6);
+  --glow-blue: 0 0 25px rgba(0, 210, 255, 0.35);
+  --glow-purple: 0 0 35px rgba(139, 92, 246, 0.4);
+  --glow-primary: 0 0 30px rgba(110, 86, 248, 0.35);
+
+  /* Typography Scale */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', var(--font-main);
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout & Spacing */
+  --container-max: 1240px;
+  --nav-height: 80px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-height) + 20px);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.65;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --------------------------------------------------------------------------
+   3. Ambient Neon Lighting & Grid Overlay
+   -------------------------------------------------------------------------- */
+.ambient-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+  will-change: transform;
+}
+
+.glow-1 {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.35) 0%, rgba(14, 165, 233, 0.1) 60%, transparent 80%);
+  top: -150px;
+  left: 15%;
+  animation: pulseGlow 14s ease-in-out infinite alternate;
+}
+
+.glow-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, rgba(217, 70, 239, 0.12) 60%, transparent 80%);
+  top: 15%;
+  right: -150px;
+  animation: pulseGlow 18s ease-in-out infinite alternate-reverse;
+}
+
+.glow-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, rgba(0, 240, 255, 0.08) 60%, transparent 80%);
+  bottom: 10%;
+  left: -100px;
+  animation: pulseGlow 20s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.35; }
+  50% { transform: scale(1.15) translate(30px, -20px); opacity: 0.5; }
+  100% { transform: scale(0.95) translate(-25px, 25px); opacity: 0.35; }
+}
+
+.grid-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 20%, black 30%, transparent 95%);
+}
+
+/* --------------------------------------------------------------------------
+   4. Typography & Utility Classes
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.gradient-text {
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--neon-cyan);
+  background: rgba(0, 240, 255, 0.08);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin-inline: auto;
+  line-height: 1.7;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Glassmorphism Card System */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.glass-card:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   5. Buttons & Interactive Elements
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  border-radius: var(--radius-full);
+  padding: 0.85rem 1.75rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn-primary {
+  background: var(--gradient-neon);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.45);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 80%);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 240, 255, 0.5), 0 0 35px rgba(217, 70, 239, 0.4);
+}
+
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-main);
+  border: 1px solid var(--border-card);
+  backdrop-filter: var(--glass-blur-sm);
+  -webkit-backdrop-filter: var(--glass-blur-sm);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--neon-cyan);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 210, 255, 0.2);
+}
+
+.btn-secondary-nav {
+  background: rgba(139, 92, 246, 0.12);
+  color: #c084fc;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  padding: 0.55rem 1.25rem;
+  font-size: 0.875rem;
+}
+
+.btn-secondary-nav:hover {
+  background: var(--gradient-neon);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-arrow, .btn-icon {
+  width: 18px;
+  height: 18px;
+  transition: transform var(--transition-fast);
+}
+
+.btn-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* --------------------------------------------------------------------------
+   6. Header & Navbar
+   -------------------------------------------------------------------------- */
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1rem 1.5rem;
+  transition: all var(--transition-normal);
+}
+
+.navbar {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  height: var(--nav-height);
+  padding: 0 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--radius-full);
+  background: rgba(10, 12, 22, 0.5);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-normal);
+}
+
+.navbar-wrapper.scrolled .navbar {
+  background: rgba(8, 10, 18, 0.85);
+  border-color: rgba(139, 92, 246, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 240, 255, 0.1);
+  height: 68px;
+}
+
+/* Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 800;
+}
+
+.logo-symbol {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-cyan);
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover .logo-symbol {
+  transform: rotate(5deg) scale(1.05);
+}
+
+.logo-symbol svg {
+  width: 20px;
+  height: 20px;
+}
+
+.sparkle-dot {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon-magenta);
+  box-shadow: 0 0 8px var(--neon-magenta);
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.logo-dot {
+  color: var(--neon-cyan);
+  background: var(--gradient-neon);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Nav Menu */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  position: relative;
+  padding: 0.35rem 0;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--gradient-neon);
+  transition: width var(--transition-fast);
+  border-radius: 2px;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-cta-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Mobile Toggle Hamburger */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.hamburger-bar {
+  width: 20px;
+  height: 2px;
+  background-color: var(--text-main);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.mobile-toggle.active .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-toggle.active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-toggle.active .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --------------------------------------------------------------------------
+   7. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 5rem 0 4rem;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1.15rem;
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: var(--radius-full);
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  backdrop-filter: var(--glass-blur-sm);
+}
+
+.badge-icon {
+  color: var(--neon-cyan);
+  font-size: 0.875rem;
+}
+
+.badge-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  letter-spacing: 0.02em;
+}
+
+.badge-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: pingGreen 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pingGreen {
+  0% { transform: scale(0.95); opacity: 0.9; }
+  50% { transform: scale(1.5); opacity: 0.4; }
+  100% { transform: scale(0.95); opacity: 0.9; }
+}
+
+.hero-headline {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 5.5vw, 4.4rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  max-width: 980px;
+  margin-bottom: 1.75rem;
+}
+
+.hero-subheadline {
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  color: var(--text-secondary);
+  max-width: 760px;
+  line-height: 1.75;
+  margin-bottom: 2.75rem;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+/* Hero Stats Bar */
+.hero-stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+  padding: 1.75rem 2.5rem;
+  width: 100%;
+  max-width: 980px;
+  background: rgba(14, 18, 30, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+   8. Interactive Demo Section (Chat UI Simulation)
+   -------------------------------------------------------------------------- */
+.demo-section {
+  padding: 5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.chat-demo-container {
+  max-width: 860px;
+  margin-inline: auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.2);
+  background: rgba(11, 14, 25, 0.85);
+}
+
+/* Header bar resembling modern OS / AI console */
+.chat-window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  background: rgba(18, 22, 38, 0.95);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.window-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.control-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.control-dot.red { background: #ff5f56; }
+.control-dot.yellow { background: #ffbd2e; }
+.control-dot.green { background: #27c93f; }
+
+.chat-agent-info {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.agent-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #00d2ff, #7928ca);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  position: relative;
+}
+
+.agent-avatar svg {
+  width: 18px;
+  height: 18px;
+}
+
+.online-indicator {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  border: 2px solid #0c0e18;
+}
+
+.agent-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.agent-title {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.agent-status {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.latency-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+/* Chat Messages Viewport */
+.chat-body {
+  min-height: 330px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+}
+
+.chat-bubble-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.chat-bubble-row.user-row {
+  flex-direction: row-reverse;
+}
+
+.bubble-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.bot-avatar {
+  background: linear-gradient(135deg, #00d2ff, #8b5cf6);
+  color: white;
+}
+
+.user-avatar {
+  background: #334155;
+  color: #e2e8f0;
+}
+
+.bubble-content {
+  max-width: 80%;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  position: relative;
+  animation: slideFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.bot-bubble {
+  background: rgba(22, 27, 46, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #f1f5f9;
+  border-top-left-radius: 4px;
+}
+
+.user-bubble {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: #ffffff;
+  border-top-right-radius: 4px;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.35);
+}
+
+.bubble-sender {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--neon-cyan);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.03em;
+}
+
+.bubble-time {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+.user-bubble .bubble-time {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Typing Indicator Animation */
+.typing-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.35rem 0.2rem;
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--neon-cyan);
+  animation: pulseDot 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+.typing-dot:nth-child(3) { animation-delay: 0s; }
+
+@keyframes pulseDot {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+  40% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Report Payload Card inside Bot Chat */
+.report-preview-box {
+  margin-top: 0.85rem;
+  background: rgba(10, 14, 26, 0.7);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #38bdf8;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.45rem;
+}
+
+.report-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.6rem;
+}
+
+.report-stat-pill {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.45rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.report-stat-pill .label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: block;
+}
+
+.report-stat-pill .val {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.report-footer-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #34d399;
+}
+
+/* Quick Scenarios Bar */
+.chat-quick-scenarios {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.5rem;
+  background: rgba(14, 18, 32, 0.7);
+  border-top: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.chat-quick-scenarios::-webkit-scrollbar {
+  display: none;
+}
+
+.quick-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.quick-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  font-size: 0.775rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.quick-chip:hover, .quick-chip.active {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #ffffff;
+}
+
+/* Chat Footer & Control Action */
+.chat-footer-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.5rem;
+  background: rgba(13, 16, 28, 0.95);
+  border-top: 1px solid var(--border-subtle);
+  gap: 1rem;
+}
+
+.input-preview-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  padding: 0.75rem 1.15rem;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #e2e8f0;
+  min-height: 48px;
+  overflow: hidden;
+}
+
+.terminal-prefix {
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+
+.prompt-preview-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #94a3b8;
+}
+
+.prompt-preview-text.typing-active {
+  color: #ffffff;
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--neon-cyan);
+  vertical-align: middle;
+  animation: blinkCursor 0.9s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.demo-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.btn-simulate {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-icon-spin {
+  width: 16px;
+  height: 16px;
+}
+
+.btn-secondary-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary-icon:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+}
+
+.btn-secondary-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* --------------------------------------------------------------------------
+   9. Features Section (CSS Grid 3-Cards)
+   -------------------------------------------------------------------------- */
+.features-section {
+  padding: 6rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.feature-card {
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-card-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-neon);
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 240, 255, 0.35);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(139, 92, 246, 0.25);
+}
+
+.feature-card:hover .feature-card-glow {
+  opacity: 1;
+}
+
+.feature-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neon-cyan);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+  transition: transform var(--transition-fast);
+}
+
+.feature-card:hover .feature-icon-wrapper {
+  transform: scale(1.08) rotate(3deg);
+  border-color: var(--neon-magenta);
+  color: #ffffff;
+}
+
+.feature-icon-wrapper svg {
+  width: 28px;
+  height: 28px;
+}
+
+.feature-badge {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #c084fc;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.85rem;
+}
+
+.feature-title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.feature-description {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-bottom: 1.75rem;
+  flex-grow: 1;
+}
+
+.feature-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+}
+
+.feature-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+}
+
+.feature-checklist svg {
+  width: 16px;
+  height: 16px;
+  color: var(--neon-cyan);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
+   10. Services Section
+   -------------------------------------------------------------------------- */
+.services-section {
+  padding: 5rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.service-box {
+  padding: 2rem 1.6rem;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-normal);
+}
+
+.service-box:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 210, 255, 0.15);
+}
+
+.service-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c084fc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.service-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.service-box h4 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.service-box p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* --------------------------------------------------------------------------
+   11. Contact & Consultation Section
+   -------------------------------------------------------------------------- */
+.contact-section {
+  padding: 5rem 0 6rem;
+  position: relative;
+  z-index: 2;
+}
+
+.contact-card {
+  padding: 3.5rem;
+  background: linear-gradient(135deg, rgba(16, 20, 36, 0.9) 0%, rgba(22, 18, 42, 0.8) 100%);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(139, 92, 246, 0.2);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.contact-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+.contact-desc {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 2.25rem;
+}
+
+.contact-direct-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.direct-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.direct-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--neon-cyan);
+  transform: translateX(5px);
+}
+
+.direct-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(0, 240, 255, 0.1);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  color: var(--neon-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.direct-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.direct-label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.direct-value {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+/* Contact Form Styling */
+.contact-form-wrapper {
+  background: rgba(11, 14, 25, 0.8);
+  border: 1px solid var(--border-subtle);
+  padding: 2.25rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.form-title {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  color: #f8fafc;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.form-group input::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  background: rgba(16, 22, 38, 0.95);
+}
+
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 16px;
+  padding-right: 2.5rem;
+}
+
+.form-group select option {
+  background-color: #0c101d;
+  color: #f8fafc;
+}
+
+.form-note {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer
+   -------------------------------------------------------------------------- */
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(6, 7, 12, 0.95);
+  padding: 4.5rem 0 2.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1fr;
+  gap: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
+.footer-brand .brand-logo {
+  margin-bottom: 1.25rem;
+}
+
+.footer-tagline {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+.footer-heading {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.footer-links a {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.footer-links a:hover {
+  color: var(--neon-cyan);
+  transform: translateX(3px);
+  display: inline-block;
+}
+
+.footer-email {
+  font-family: var(--font-mono);
+  color: var(--neon-cyan) !important;
+  font-weight: 600;
+}
+
+.footer-location {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.footer-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  margin-top: 0.5rem;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+/* Social Buttons */
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social-btn:hover {
+  background: var(--gradient-neon);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   13. Toast Notification
+   -------------------------------------------------------------------------- */
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(14, 18, 32, 0.95);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 240, 255, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 1000;
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all var(--transition-smooth);
+  pointer-events: none;
+}
+
+.toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.toast-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #10b981;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.toast-body h6 {
+  font-family: var(--font-heading);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.2rem;
+}
+
+.toast-body p {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* --------------------------------------------------------------------------
+   14. Responsive Breakpoints
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .footer-top {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 70px;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: calc(var(--nav-height) + 1.5rem);
+    left: 1.5rem;
+    right: 1.5rem;
+    background: rgba(10, 13, 24, 0.96);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: var(--radius-lg);
+    flex-direction: column;
+    padding: 2rem;
+    gap: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-15px);
+    transition: all var(--transition-normal);
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .hero-stats-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .chat-footer-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .demo-buttons-group {
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-headline {
+    font-size: 2.15rem;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+  .btn-secondary-nav {
+    display: none;
+  }
+}
+
+</style>
+</head>
+<body>
+  <!-- Ambient Neon Background Orbs -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- Navbar -->
+  <header class="navbar-wrapper">
+    <nav class="navbar" id="main-nav" aria-label="Navigasi Utama">
+      <a href="#" class="brand-logo" aria-label="Prompting.in Beranda">
+        <div class="logo-symbol">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          <span class="sparkle-dot"></span>
+        </div>
+        <span class="logo-text">PROMPTING<span class="logo-dot">.IN</span></span>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#layanan" class="nav-link">Layanan</a></li>
+        <li><a href="#fitur" class="nav-link">Fitur</a></li>
+        <li><a href="#demo" class="nav-link">Demo AI</a></li>
+        <li><a href="#kontak" class="nav-link">Kontak</a></li>
+      </ul>
+
+      <!-- Navbar Action -->
+      <div class="nav-cta-wrapper">
+        <a href="#demo" class="btn btn-secondary-nav" id="btn-nav-coba">Coba Sekarang</a>
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Buka Menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <!-- Hero Badge -->
+        <div class="hero-badge animate-fade-in">
+          <span class="badge-icon">✦</span>
+          <span class="badge-text">Solusi AI Agent B2B Generasi Baru</span>
+          <span class="badge-pulse"></span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="hero-headline animate-fade-up">
+          Otomatisasi Bisnis Anda dengan <span class="gradient-text">AI Agent Cerdas</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="hero-subheadline animate-fade-up-delay-1">
+          Tingkatkan efisiensi operasional dan layani pelanggan 24/7 tanpa batas. Kami merancang solusi AI kustom khusus untuk alur kerja perusahaan Anda.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="hero-cta-group animate-fade-up-delay-2">
+          <a href="#kontak" class="btn btn-primary" id="btn-hero-demo">
+            <span>Jadwalkan Demo Gratis</span>
+            <svg class="btn-arrow" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </a>
+          <a href="#demo" class="btn btn-glass" id="btn-hero-explore">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Lihat Simulasi Langsung</span>
+          </a>
+        </div>
+
+        <!-- Social Proof Stats Banner -->
+        <div class="hero-stats-bar glass-card animate-fade-up-delay-3">
+          <div class="stat-item">
+            <div class="stat-number gradient-text">24/7</div>
+            <div class="stat-label">Respon Tanpa Jeda</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number gradient-text">60%</div>
+            <div class="stat-label">Pangkas Biaya Operasional</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number gradient-text">&lt; 3 Detik</div>
+            <div class="stat-label">Kecepatan Eksekusi Tugas</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number gradient-text">99.9%</div>
+            <div class="stat-label">Akurasi Workflow</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Demo Section -->
+    <section class="demo-section" id="demo">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">INTERACTIVE EXPERIENCE</div>
+          <h2 class="section-title">Lihat AI Agent Bekerja <span class="gradient-text">Secara Real-Time</span></h2>
+          <p class="section-subtitle">
+            Coba simulasi interaktif di bawah ini untuk melihat bagaimana AI Agent Prompting.in mengeksekusi instruksi bisnis kompleks secara otomatis dalam hitungan detik.
+          </p>
+        </div>
+
+        <!-- Chat UI Demo Box -->
+        <div class="chat-demo-container glass-card">
+          <!-- Chat App Header -->
+          <div class="chat-window-header">
+            <div class="window-controls">
+              <span class="control-dot red"></span>
+              <span class="control-dot yellow"></span>
+              <span class="control-dot green"></span>
+            </div>
+            <div class="chat-agent-info">
+              <div class="agent-avatar">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2 2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"></path>
+                  <rect x="4" y="8" width="16" height="12" rx="3"></rect>
+                  <line x1="9" y1="13" x2="9" y2="15"></line>
+                  <line x1="15" y1="13" x2="15" y2="15"></line>
+                </svg>
+                <span class="online-indicator"></span>
+              </div>
+              <div class="agent-meta">
+                <span class="agent-title">Prompting.in AI Copilot</span>
+                <span class="agent-status">Enterprise Sales & Ops Assistant • v2.6 Online</span>
+              </div>
+            </div>
+            <div class="chat-actions-top">
+              <span class="latency-badge">⚡ 18ms latency</span>
+            </div>
+          </div>
+
+          <!-- Chat Messages Body -->
+          <div class="chat-body" id="chat-body" aria-live="polite">
+            <!-- Initial Welcome Message from System -->
+            <div class="chat-bubble-row bot-row">
+              <div class="bubble-avatar bot-avatar">
+                <span>AI</span>
+              </div>
+              <div class="bubble-content bot-bubble">
+                <div class="bubble-sender">Prompting.in Agent</div>
+                <p>Halo! Saya siap mengotomatisasi alur kerja Anda hari ini. Klik tombol <strong>"Simulasikan AI"</strong> di bawah untuk menguji integrasi otomatisasi laporan dan tugas bisnis.</p>
+                <div class="bubble-time">13:30 • Terverifikasi</div>
+              </div>
+            </div>
+
+            <!-- Dynamic Messages will be injected here via JavaScript -->
+          </div>
+
+          <!-- Quick Scenario Selector -->
+          <div class="chat-quick-scenarios">
+            <span class="quick-label">Pilihan skenario demo:</span>
+            <button class="quick-chip active" data-scenario="sales">
+              📊 Laporan Penjualan Otomatis
+            </button>
+            <button class="quick-chip" data-scenario="support">
+              💬 Eskalasi Tiket Pelanggan
+            </button>
+            <button class="quick-chip" data-scenario="leads">
+              🎯 Kualifikasi Lead & CRM Sync
+            </button>
+          </div>
+
+          <!-- Chat Control Footer -->
+          <div class="chat-footer-controls">
+            <div class="input-preview-box">
+              <span class="terminal-prefix">&gt;</span>
+              <span id="prompt-preview-text" class="prompt-preview-text">Klik tombol "Simulasikan AI" untuk memulai eksekusi otomatis...</span>
+              <span class="typing-cursor" id="typing-cursor"></span>
+            </div>
+
+            <div class="demo-buttons-group">
+              <button class="btn btn-primary btn-simulate" id="btn-simulate-ai">
+                <svg class="btn-icon-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                <span id="simulate-btn-text">Simulasikan AI</span>
+              </button>
+              <button class="btn btn-secondary-icon" id="btn-reset-chat" title="Reset Percakapan" aria-label="Reset Percakapan">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                  <path d="M3 3v5h5"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="fitur">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">KEUNGGULAN UTAMA</div>
+          <h2 class="section-title">Mengapa Memilih AI Agent <span class="gradient-text">Prompting.in</span>?</h2>
+          <p class="section-subtitle">
+            Dirancang khusus untuk arsitektur B2B modern dengan ketahanan tinggi, keamanan data enterprise, dan return on investment terukur.
+          </p>
+        </div>
+
+        <!-- 3 Feature Cards via CSS Grid -->
+        <div class="features-grid">
+          <!-- Card 1 -->
+          <article class="feature-card glass-card">
+            <div class="feature-card-glow"></div>
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+            </div>
+            <div class="feature-badge">Zero Downtime</div>
+            <h3 class="feature-title">Layanan 24/7</h3>
+            <p class="feature-description">
+              Tanpa henti merespon pelanggan kapan saja, di mana saja. AI Agent kami bekerja 365 hari dalam setahun tanpa lelah dengan kecepatan respons instan di bawah 3 detik.
+            </p>
+            <ul class="feature-checklist">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Respon multi-bahasa instan
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Handling ribuan pesan serentak
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Eskalasi pintar ke staf saat dibutuhkan
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="feature-card glass-card">
+            <div class="feature-card-glow"></div>
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <div class="feature-badge">Plug & Play</div>
+            <h3 class="feature-title">Integrasi Seamless</h3>
+            <p class="feature-description">
+              Cocok dengan sistem bisnis lama Anda tanpa perlu perombakan infrastruktur besar. Terhubung mulus ke CRM, WhatsApp API, ERP, Database, Slack, dan Google Workspace.
+            </p>
+            <ul class="feature-checklist">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Dukungan API kustom & Webhook
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Sinkronisasi data dua arah real-time
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Keamanan enkripsi standar enterprise
+              </li>
+            </ul>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="feature-card glass-card">
+            <div class="feature-card-glow"></div>
+            <div class="feature-icon-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <div class="feature-badge">High ROI</div>
+            <h3 class="feature-title">Efisien & Hemat</h3>
+            <p class="feature-description">
+              Pangkas biaya operasional hingga 60%. Delegasikan tugas repetitif kepada AI sehingga tim inti Anda dapat fokus pada pertumbuhan strategis dan ekspansi bisnis.
+            </p>
+            <ul class="feature-checklist">
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Eliminasi human error pada data entry
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Peningkatan output kerja hingga 10x
+              </li>
+              <li>
+                <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                Periode payback investasi &lt; 3 bulan
+              </li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services / Layanan Section -->
+    <section class="services-section" id="layanan">
+      <div class="container">
+        <div class="section-header text-center">
+          <div class="section-tag">SOLUSI KUSTOM</div>
+          <h2 class="section-title">Layanan AI Agent Khusus <span class="gradient-text">Industri Anda</span></h2>
+          <p class="section-subtitle">
+            Kami tidak menjual template kaku. Setiap AI Agent dibangun dengan arsitektur tailored yang memahami aturan bisnis dan data internal perusahaan Anda.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-box glass-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h4>Customer Support AI Agent</h4>
+            <p>Otomatisasi resolusi tiket via WhatsApp, Web, dan Email dengan konteks riwayat pengguna dan nada komunikasi brand Anda.</p>
+          </div>
+
+          <div class="service-box glass-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+              </svg>
+            </div>
+            <h4>Workflow & RPA Automation</h4>
+            <p>Sambungkan alur kerja antar software seperti invoice processing, validasi dokumen, dan input data tanpa intervensi manual.</p>
+          </div>
+
+          <div class="service-box glass-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </div>
+            <h4>Sales Outreach & Lead Gen</h4>
+            <p>Kualifikasi calon prospek secara otomatis, jadwalkan meeting kalender, dan kirim proposal yang dipersonalisasi.</p>
+          </div>
+
+          <div class="service-box glass-card">
+            <div class="service-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+              </svg>
+            </div>
+            <h4>Executive Reporting Agent</h4>
+            <p>Hasilkan ringkasan KPI eksekutif, forecast penjualan, dan deteksi anomali finansial otomatis langsung ke email direksi.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Consultation Section -->
+    <section class="contact-section" id="kontak">
+      <div class="container">
+        <div class="contact-card glass-card">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <div class="section-tag">KONSULTASI GRATIS</div>
+              <h2 class="contact-title">Siap Melipatgandakan <span class="gradient-text">Efisiensi Bisnis?</span></h2>
+              <p class="contact-desc">
+                Diskusikan tantangan alur kerja perusahaan Anda dengan AI Solution Architect kami. Kami akan menyusun blueprint otomatisasi kustom dalam waktu 48 jam.
+              </p>
+
+              <div class="contact-direct-list">
+                <a href="mailto:hello@prompting.in" class="direct-item">
+                  <div class="direct-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="direct-label">Email Tim Kami</span>
+                    <span class="direct-value">hello@prompting.in</span>
+                  </div>
+                </a>
+
+                <div class="direct-item">
+                  <div class="direct-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="direct-label">Waktu Tanggapan</span>
+                    <span class="direct-value">&lt; 1 Jam pada Jam Kerja</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Booking Form -->
+            <div class="contact-form-wrapper">
+              <form class="contact-form" id="consultation-form" onsubmit="return false;">
+                <h3 class="form-title">Jadwalkan Demo Eksklusif</h3>
+                <div class="form-group">
+                  <label for="client-name">Nama Lengkap</label>
+                  <input type="text" id="client-name" name="name" placeholder="cth. Hendra Wijaya" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="client-email">Email Perusahaan</label>
+                  <input type="email" id="client-email" name="email" placeholder="nama@perusahaan.com" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="automation-need">Fokus Kebutuhan Otomatisasi</label>
+                  <select id="automation-need" name="need">
+                    <option value="support">Customer Support 24/7</option>
+                    <option value="workflow">Workflow & ERP Automation</option>
+                    <option value="sales">Sales & Lead Qualification</option>
+                    <option value="custom">Kustomisasi Skala Enterprise</option>
+                  </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="btn-submit-consultation">
+                  <span>Kirim Permintaan Demo</span>
+                  <svg viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <p class="form-note">🔒 Data perusahaan Anda dijamin kerahasiaannya dengan NDA.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="brand-logo">
+            <div class="logo-symbol">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+            </div>
+            <span class="logo-text">PROMPTING<span class="logo-dot">.IN</span></span>
+          </a>
+          <p class="footer-tagline">
+            Membangun masa depan otomatisasi enterprise dengan arsitektur AI Agent otonom yang presisi, aman, dan berdaya guna tinggi.
+          </p>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="footer-heading">Navigasi</h5>
+          <ul class="footer-links">
+            <li><a href="#layanan">Layanan</a></li>
+            <li><a href="#fitur">Fitur</a></li>
+            <li><a href="#demo">Demo AI</a></li>
+            <li><a href="#kontak">Jadwalkan Demo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="footer-heading">Kontak & Dukungan</h5>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@prompting.in" class="footer-email">hello@prompting.in</a></li>
+            <li><span class="footer-location">Jakarta &amp; Remote Global</span></li>
+            <li><span class="footer-status-pill"><span class="status-dot"></span> System Operational 99.98%</span></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <h5 class="footer-heading">Media Sosial</h5>
+          <div class="social-links">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Twitter / X">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="copyright">&copy; 2026 prompting.in. All rights reserved.</p>
+        <p class="footer-privacy">Dirancang dengan presisi untuk automasi bisnis masa depan.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite">
+    <div class="toast-icon">✓</div>
+    <div class="toast-body">
+      <h6 id="toast-title">Pesan Terkirim</h6>
+      <p id="toast-message">Tim kami akan menghubungi Anda dalam &lt; 1 jam.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+/**
+ * PROMPTING.IN — Interactive JavaScript Engine
+ * Handles:
+ * 1. AI Chat Demo Simulation with Realistic Typing Effects
+ * 2. Scenario Switching (Sales, Support, Leads)
+ * 3. Sticky Navbar Blur on Scroll
+ * 4. Mobile Menu Navigation
+ * 5. Lead Form Submission & Toast Notifications
+ * 6. Smooth Scroll & Intersection Observers
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  // -------------------------------------------------------------------------
+  // 1. DOM Elements Selection
+  // -------------------------------------------------------------------------
+  const navbarWrapper = document.querySelector('.navbar-wrapper');
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navLinks = document.getElementById('nav-links');
+  const navLinkItems = document.querySelectorAll('.nav-link');
+
+  // Chat Demo Elements
+  const chatBody = document.getElementById('chat-body');
+  const btnSimulateAI = document.getElementById('btn-simulate-ai');
+  const btnResetChat = document.getElementById('btn-reset-chat');
+  const simulateBtnText = document.getElementById('simulate-btn-text');
+  const promptPreviewText = document.getElementById('prompt-preview-text');
+  const scenarioChips = document.querySelectorAll('.quick-chip');
+
+  // Contact Form & Toast Elements
+  const consultationForm = document.getElementById('consultation-form');
+  const toastNotification = document.getElementById('toast-notification');
+  const toastTitle = document.getElementById('toast-title');
+  const toastMessage = document.getElementById('toast-message');
+
+  // -------------------------------------------------------------------------
+  // 2. Demo Simulation Data & State
+  // -------------------------------------------------------------------------
+  let isSimulating = false;
+  let currentScenario = 'sales';
+
+  const scenarios = {
+    sales: {
+      userPrompt: 'Tolong buatkan laporan penjualan minggu ini',
+      aiReply: 'Laporan penjualan telah diotomatisasi dan dikirim ke email Anda dalam 3 detik.',
+      payload: {
+        title: 'Weekly_Revenue_Report_Q4.pdf',
+        stats: [
+          { label: 'Total Revenue', value: 'Rp 148.500.000' },
+          { label: 'Transaksi Berhasil', value: '1.428 Pesanan' },
+          { label: 'Growth WoW', value: '+24.6% ↗' },
+          { label: 'Status Eksekusi', value: 'Email & ERP Synced' }
+        ],
+        footerText: '✓ Otomatis dikirim ke direksi@perusahaan.com'
+      }
+    },
+    support: {
+      userPrompt: 'Ada eskalasi komplain pelanggan VIP mengenai API timeout',
+      aiReply: 'Masalah berhasil diidentifikasi. Tiket prioritas P0 telah dibuat di Jira, server logs dianalisis, dan balasan personal telah dikirim ke klien VIP.',
+      payload: {
+        title: 'Incident_Resolution_Ticket #VIP-892',
+        stats: [
+          { label: 'Waktu Analisis', value: '1.4 detik' },
+          { label: 'Severity Level', value: 'P0 Critical' },
+          { label: 'Jira Status', value: 'Assigned to DevOps' },
+          { label: 'Client Notification', value: 'Sent via WhatsApp' }
+        ],
+        footerText: '✓ SLA respon tercapai dalam 45 detik'
+      }
+    },
+    leads: {
+      userPrompt: 'Kualifikasi 50 lead baru dari formulir website hari ini',
+      aiReply: '50 lead telah diskor dan dikualifikasi berdasarkan revenue & industri. 18 hot leads langsung dijadwalkan ke Google Calendar sales executive.',
+      payload: {
+        title: 'Lead_Qualification_Batch_Today.csv',
+        stats: [
+          { label: 'Total Leads Diproses', value: '50 Prospek' },
+          { label: 'SQL (Sales Qualified)', value: '18 Hot Leads' },
+          { label: 'Hubspot Sync', value: '100% Updated' },
+          { label: 'Calendar Invites', value: '18 Terkirim' }
+        ],
+        footerText: '✓ Notifikasi instan dikirim ke Slack #sales-wins'
+      }
+    }
+  };
+
+  // -------------------------------------------------------------------------
+  // 3. Navbar Scroll Blur & Shadow
+  // -------------------------------------------------------------------------
+  const handleScroll = () => {
+    if (window.scrollY > 25) {
+      navbarWrapper.classList.add('scrolled');
+    } else {
+      navbarWrapper.classList.remove('scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll(); // Initial check
+
+  // -------------------------------------------------------------------------
+  // 4. Mobile Menu Toggle
+  // -------------------------------------------------------------------------
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+      const isExpanded = mobileToggle.getAttribute('aria-expanded') === 'true';
+      mobileToggle.setAttribute('aria-expanded', !isExpanded);
+      mobileToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking any nav link
+    navLinkItems.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navbarWrapper.contains(e.target) && navLinks.classList.contains('active')) {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // 5. Typing Animation Engine
+  // -------------------------------------------------------------------------
+  function typeText(targetElement, text, speed = 28) {
+    return new Promise((resolve) => {
+      let index = 0;
+      targetElement.textContent = '';
+      
+      const interval = setInterval(() => {
+        if (index < text.length) {
+          targetElement.textContent += text.charAt(index);
+          index++;
+          chatBody.scrollTop = chatBody.scrollHeight;
+        } else {
+          clearInterval(interval);
+          resolve();
+        }
+      }, speed);
+    });
+  }
+
+  function getTimeString() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    return `${hours}:${minutes}`;
+  }
+
+  // -------------------------------------------------------------------------
+  // 6. Run AI Simulation
+  // -------------------------------------------------------------------------
+  async function runSimulation() {
+    if (isSimulating) return;
+    isSimulating = true;
+
+    const data = scenarios[currentScenario];
+
+    // UI state updates
+    btnSimulateAI.disabled = true;
+    simulateBtnText.textContent = 'Menjalankan AI...';
+    promptPreviewText.classList.add('typing-active');
+    promptPreviewText.textContent = '';
+
+    // Step A: Type text in the bottom preview bar first
+    await typeText(promptPreviewText, data.userPrompt, 24);
+    await new Promise(r => setTimeout(r, 250));
+
+    // Step B: Create and Append User Message in Chat
+    const userRow = document.createElement('div');
+    userRow.className = 'chat-bubble-row user-row';
+    userRow.innerHTML = `
+      <div class="bubble-avatar user-avatar">
+        <span>Anda</span>
+      </div>
+      <div class="bubble-content user-bubble">
+        <p class="user-text"></p>
+        <div class="bubble-time">${getTimeString()} • Terkirim</div>
+      </div>
+    `;
+    chatBody.appendChild(userRow);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    const userTextElement = userRow.querySelector('.user-text');
+    userTextElement.textContent = data.userPrompt;
+
+    // Reset prompt bar text placeholder
+    promptPreviewText.classList.remove('typing-active');
+    promptPreviewText.textContent = 'AI sedang memproses instruksi otomatis...';
+
+    // Step C: Append AI Thinking Indicator
+    const thinkingRow = document.createElement('div');
+    thinkingRow.className = 'chat-bubble-row bot-row thinking-row';
+    thinkingRow.innerHTML = `
+      <div class="bubble-avatar bot-avatar">
+        <span>AI</span>
+      </div>
+      <div class="bubble-content bot-bubble">
+        <div class="bubble-sender">Prompting.in Agent</div>
+        <div class="typing-dots">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      </div>
+    `;
+    chatBody.appendChild(thinkingRow);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Wait realistic processing duration (900ms)
+    await new Promise(r => setTimeout(r, 900));
+
+    // Step D: Replace Thinking Indicator with Real AI Answer
+    thinkingRow.remove();
+
+    const botRow = document.createElement('div');
+    botRow.className = 'chat-bubble-row bot-row';
+    botRow.innerHTML = `
+      <div class="bubble-avatar bot-avatar">
+        <span>AI</span>
+      </div>
+      <div class="bubble-content bot-bubble">
+        <div class="bubble-sender">Prompting.in Agent</div>
+        <p class="ai-text"></p>
+        <div class="bubble-time">${getTimeString()} • Eksekusi Selesai (3s)</div>
+      </div>
+    `;
+    chatBody.appendChild(botRow);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    const aiTextElement = botRow.querySelector('.ai-text');
+    await typeText(aiTextElement, data.aiReply, 22);
+
+    // Step E: Render Interactive Payload Card (e.g. Sales report preview)
+    const reportCard = document.createElement('div');
+    reportCard.className = 'report-preview-box';
+    reportCard.innerHTML = `
+      <div class="report-header">
+        <span>📄 ${data.payload.title}</span>
+        <span class="badge-pulse"></span>
+      </div>
+      <div class="report-grid">
+        ${data.payload.stats.map(s => `
+          <div class="report-stat-pill">
+            <span class="label">${s.label}</span>
+            <span class="val">${s.value}</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="report-footer-tag">
+        ${data.payload.footerText}
+      </div>
+    `;
+    
+    botRow.querySelector('.bubble-content').appendChild(reportCard);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Finish simulation state
+    promptPreviewText.textContent = 'Klik tombol untuk menjalankan simulasi kembali atau ganti skenario.';
+    simulateBtnText.textContent = 'Simulasikan Lagi';
+    btnSimulateAI.disabled = false;
+    isSimulating = false;
+  }
+
+  // -------------------------------------------------------------------------
+  // 7. Reset Chat Functionality
+  // -------------------------------------------------------------------------
+  function resetChat() {
+    if (isSimulating) return;
+    chatBody.innerHTML = `
+      <div class="chat-bubble-row bot-row">
+        <div class="bubble-avatar bot-avatar">
+          <span>AI</span>
+        </div>
+        <div class="bubble-content bot-bubble">
+          <div class="bubble-sender">Prompting.in Agent</div>
+          <p>Halo! Saya siap mengotomatisasi alur kerja Anda hari ini. Klik tombol <strong>"Simulasikan AI"</strong> di bawah untuk menguji integrasi otomatisasi laporan dan tugas bisnis.</p>
+          <div class="bubble-time">${getTimeString()} • Terverifikasi</div>
+        </div>
+      </div>
+    `;
+    promptPreviewText.textContent = 'Klik tombol "Simulasikan AI" untuk memulai eksekusi otomatis...';
+    simulateBtnText.textContent = 'Simulasikan AI';
+  }
+
+  // -------------------------------------------------------------------------
+  // 8. Scenario Selector Chips
+  // -------------------------------------------------------------------------
+  scenarioChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      if (isSimulating) return;
+      scenarioChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      currentScenario = chip.dataset.scenario;
+      promptPreviewText.textContent = `Skenario dipilih: "${scenarios[currentScenario].userPrompt}". Klik "Simulasikan AI"`;
+    });
+  });
+
+  if (btnSimulateAI) {
+    btnSimulateAI.addEventListener('click', runSimulation);
+  }
+
+  if (btnResetChat) {
+    btnResetChat.addEventListener('click', resetChat);
+  }
+
+  // -------------------------------------------------------------------------
+  // 9. Toast Notification Handler
+  // -------------------------------------------------------------------------
+  function showToast(title, message, duration = 4500) {
+    if (!toastNotification) return;
+    toastTitle.textContent = title;
+    toastMessage.textContent = message;
+    toastNotification.classList.add('show');
+
+    setTimeout(() => {
+      toastNotification.classList.remove('show');
+    }, duration);
+  }
+
+  // -------------------------------------------------------------------------
+  // 10. Consultation Form Submission
+  // -------------------------------------------------------------------------
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nameInput = document.getElementById('client-name');
+      const emailInput = document.getElementById('client-email');
+      const needSelect = document.getElementById('automation-need');
+
+      const clientName = nameInput ? nameInput.value.trim() : 'Rekan Bisnis';
+
+      // Visual feedback on button
+      const submitBtn = document.getElementById('btn-submit-consultation');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = `
+        <svg class="btn-icon-spin" style="animation: spin 1s linear infinite;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+        </svg>
+        <span>Mengirim Permintaan...</span>
+      `;
+      submitBtn.disabled = true;
+
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        consultationForm.reset();
+
+        showToast(
+          'Permintaan Demo Terkirim!',
+          `Terima kasih ${clientName}. AI Solution Architect kami akan menghubungi Anda via email dalam < 1 jam.`
+        );
+      }, 900);
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // 11. Subtle Hover Glow Effect on Feature Cards
+  // -------------------------------------------------------------------------
+  const cards = document.querySelectorAll('.feature-card, .service-box');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+});
+
+</script>
+</body>
+</html>
