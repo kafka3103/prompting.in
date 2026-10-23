@@ -1,6 +1,6 @@
 # PROMPTING.IN — B2B AI Agent SaaS Landing Page 🚀
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkafka3103%2Fprompting.in)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkafka3103%2Fprompting-in)
 ![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Active-success?logo=github)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
 
@@ -10,8 +10,8 @@ Landing page modern, estetik, dan responsif untuk startup agensi AI **Prompting.
 
 ## 🌐 Live Demos & Deployment
 
-- 🔗 **GitHub Pages (Live Sekarang)**: [https://kafka3103.github.io/prompting.in/](https://kafka3103.github.io/prompting.in/)
-- ⚡ **1-Click Deploy ke Vercel**: [Klik di sini untuk deploy langsung ke akun Vercel Anda](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkafka3103%2Fprompting.in)
+- ⚡ **Vercel Deployment (Live)**: [https://prompting-in.vercel.app/](https://prompting-in.vercel.app/)
+- 🔗 **GitHub Pages (Live Alternatif)**: [https://kafka3103.github.io/prompting.in/](https://kafka3103.github.io/prompting.in/)
 
 ---
 
@@ -37,8 +37,8 @@ Landing page modern, estetik, dan responsif untuk startup agensi AI **Prompting.
 ├── style.css        # Desain sistem, warna neon, glassmorphism, dan responsivitas
 ├── script.js        # Logika interaktif: simulasi chat, typing animation, dan navbar blur
 ├── standalone.html  # Versi mandiri all-in-one (HTML, CSS, dan JS dalam satu file)
-├── server.js        # Server lokal Node.js port 3000
-├── vercel.json      # Konfigurasi deployment Vercel
+├── dev-server.js    # Server lokal Node.js port 3000 untuk pengujian dev
+├── vercel.json      # Konfigurasi deployment routing Vercel
 ├── README.md        # Dokumentasi repositori & link deploy
 └── .gitignore       # Aturan pengabaian file Git
 ```
@@ -49,7 +49,7 @@ Landing page modern, estetik, dan responsif untuk startup agensi AI **Prompting.
 
 ### Menggunakan Node.js Server:
 ```bash
-node server.js
+node dev-server.js
 ```
 Lalu buka peramban web di: `http://localhost:3000/`
 
