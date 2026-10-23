@@ -1,11 +1,17 @@
 # PROMPTING.IN — B2B AI Agent SaaS Landing Page 🚀
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkafka3103%2Fprompting.in)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Active-success?logo=github)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-Landing page modern, estetik, dan responsif untuk agensi startup AI **Prompting.in** yang menyediakan jasa pembuatan kustom AI Agent untuk otomatisasi alur kerja enterprise B2B.
+Landing page modern, estetik, dan responsif untuk startup agensi AI **Prompting.in** yang menyediakan jasa pembuatan kustom AI Agent untuk otomatisasi alur kerja enterprise B2B.
+
+---
+
+## 🌐 Live Demos & Deployment
+
+- 🔗 **GitHub Pages (Live Sekarang)**: [https://kafka3103.github.io/prompting.in/](https://kafka3103.github.io/prompting.in/)
+- ⚡ **1-Click Deploy ke Vercel**: [Klik di sini untuk deploy langsung ke akun Vercel Anda](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fkafka3103%2Fprompting.in)
 
 ---
 
@@ -32,7 +38,8 @@ Landing page modern, estetik, dan responsif untuk agensi startup AI **Prompting.
 ├── script.js        # Logika interaktif: simulasi chat, typing animation, dan navbar blur
 ├── standalone.html  # Versi mandiri all-in-one (HTML, CSS, dan JS dalam satu file)
 ├── server.js        # Server lokal Node.js port 3000
-├── README.md        # Dokumentasi repositori
+├── vercel.json      # Konfigurasi deployment Vercel
+├── README.md        # Dokumentasi repositori & link deploy
 └── .gitignore       # Aturan pengabaian file Git
 ```
 
